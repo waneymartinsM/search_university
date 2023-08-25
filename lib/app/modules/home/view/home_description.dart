@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:search_university/app/model/university.dart';
 import 'package:flutter/material.dart';
 
@@ -13,66 +14,56 @@ class _HomeDescriptionState extends State<HomeDescription> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  '${widget.university.fullName}',
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 18),
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  'Nome: ${widget.university.name}',
-                  style: const TextStyle(fontSize: 15),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'IBGE: ${widget.university.ibge}',
-                  style: const TextStyle(fontSize: 15),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'Cidade: ${widget.university.city}',
-                  style: const TextStyle(fontSize: 15),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'Unidade Federativa: ${widget.university.uf}',
-                  style: const TextStyle(fontSize: 15),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'CEP: ${widget.university.zipcode}',
-                  style: const TextStyle(fontSize: 15),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'Rua: ${widget.university.street}',
-                  style: const TextStyle(fontSize: 15),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'Número: ${widget.university.number}',
-                  style: const TextStyle(fontSize: 15),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'Bairro: ${widget.university.neighborhood}',
-                  style: const TextStyle(fontSize: 15),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'Telefone: ${widget.university.phone}',
-                  style: const TextStyle(fontSize: 15),
-                ),
-              ],
-            ),
-          ),
-        ),
+      appBar: AppBar(),
+      body: _buildBody(),
     );
+  }
+
+  Widget _buildBody() {
+    final university = widget.university;
+
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Text(
+              '${university.fullName}',
+              style:
+                  GoogleFonts.syne(fontWeight: FontWeight.bold, fontSize: 18),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 30),
+            _buildText('Nome', university.name.toString()),
+            _buildText('IBGE', university.ibge.toString()),
+            _buildText('Cidade', university.city.toString()),
+            _buildText('Unidade Federativa', university.uf.toString()),
+            _buildText('CEP', formatCep(university.zipcode.toString())),
+            _buildText('Rua', university.street.toString()),
+            _buildText('Número', university.number.toString()),
+            _buildText('Bairro', university.neighborhood.toString()),
+            _buildText('Telefone', university.phone.toString()),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildText(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Text(
+        '$label: $value',
+        style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 16),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+  String formatCep(String cep) {
+    if (cep.length == 8) {
+      return "${cep.substring(0, 5)}-${cep.substring(5)}";
+    }
+    return cep;
   }
 }

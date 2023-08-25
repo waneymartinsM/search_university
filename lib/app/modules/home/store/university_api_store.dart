@@ -16,22 +16,20 @@ abstract class _UniversityApiStoreBase with Store {
   List<University> listUniversity = [];
 
   @action
-  Future getUniversities()async{
+  Future getUniversities() async {
     isLoading = true;
-    UniversityRepository universityRepository = UniversityRepository(Dio());
+    try {
+      UniversityRepository repository = UniversityRepository();
+      List<University> universities = await repository.searchUniversity();
+      listUniversity.addAll(universities);
 
-    await universityRepository.searchUniversity()
-        .then((university) => listUniversity = university);
-
-    if (kDebugMode) {
-      print('RESULT');
+      if (kDebugMode) {
+        print('Resultado: ${listUniversity.length}');
+      }
+    } catch (e) {
+      debugPrint("Ocorreu um erro ao buscar universidades: $e");
+    } finally {
+      isLoading = false;
     }
-    if (kDebugMode) {
-      print(listUniversity.length);
-    }
-    isLoading = false;
-    //ou
-    // listUniversity.addAll(await universityRepository.searchUniversity());
   }
-
 }

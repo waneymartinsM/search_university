@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:search_university/app/model/university.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -12,16 +13,15 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final searchController = TextEditingController();
-
   List filterUniversity = [];
 
   searchUniversity(String text) {
     filterUniversity.clear();
     for (var element in widget.universities) {
-      String filter = element.fullName!.toLowerCase()
-          + element.name!.toLowerCase()
-          + element.city!.toLowerCase()
-          + element.uf!.toLowerCase();
+      String filter = element.fullName!.toLowerCase() +
+          element.name!.toLowerCase() +
+          element.city!.toLowerCase() +
+          element.uf!.toLowerCase();
 
       if (filter.contains(text.toLowerCase())) {
         filterUniversity.add(element);
@@ -46,9 +46,14 @@ class _SearchPageState extends State<SearchPage> {
               child: TextFormField(
                 controller: searchController,
                 cursorColor: Colors.white,
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18
+                style: GoogleFonts.poppins(color: Colors.white, fontSize: 18),
+                decoration: const InputDecoration(
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                  ),
                 ),
                 onChanged: (text) {
                   searchUniversity(text);
@@ -69,7 +74,7 @@ class _SearchPageState extends State<SearchPage> {
           itemBuilder: (_, index) {
             final university = filterUniversity[index];
             return InkWell(
-              onTap: (){
+              onTap: () {
                 Modular.to.pushNamed('/description',
                     arguments: filterUniversity[index]);
               },

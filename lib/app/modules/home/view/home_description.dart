@@ -30,7 +30,7 @@ class _HomeDescriptionState extends State<HomeDescription> {
             Text(
               '${university.fullName}',
               style:
-                  GoogleFonts.syne(fontWeight: FontWeight.bold, fontSize: 18),
+                  GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 18),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),

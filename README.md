@@ -16,13 +16,13 @@ This app allows you to search all universities in Brazil.
 
 ## API
 
-API and documentation used in the code.
+The app fetches data from an API that provides information about universities in Brazil.
 
-#### Documentation
+### Documentation
 
-```http
-  https://documentacao-api-universidades.vercel.app/
-```
+API documentation can be found at:
+
+[University API Documentation](https://documentacao-api-universidades.vercel.app/)
 
 
 

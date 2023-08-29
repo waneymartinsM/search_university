@@ -1,5 +1,4 @@
 import 'package:search_university/app/model/university.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
 import '../repository/university_repository.dart';

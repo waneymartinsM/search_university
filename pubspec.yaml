@@ -30,6 +30,7 @@ dependencies:
   dio: ^4.0.6
   google_fonts: ^5.1.0
   path_provider: ^2.1.0
+  mockito: ^5.4.2
 
 dev_dependencies:
   flutter_test:
